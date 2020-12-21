@@ -16,6 +16,9 @@ import { AppComponent } from './app.component';
 Sentry.init({
   dsn:
     'https://48fce7f88fb54b8788d9242310630b52@o476433.ingest.sentry.io/5538147',
+  // The type of framework, if any, used for the project
+  // This option is necessary for overriding framework global handlers
+  framework: 'angular',
   // An array of strings or regexps that'll be used to ignore specific errors based on their type/message
   ignoreErrors: [/MiddleEarth_\d\d/, 'RangeError'],
   // Debug mode with valuable initialization/lifecycle information
@@ -39,8 +42,8 @@ Sentry.init({
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
