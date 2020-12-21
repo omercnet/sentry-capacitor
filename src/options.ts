@@ -11,6 +11,12 @@ export interface CapacitorOptions extends Options {
    */
   enableNative?: boolean;
 
+  /** The framework used for the project
+   *  Framework error handlers need to be overwritten with the Capacitor global handler
+   *  Options are: Angular
+   */
+  framework?: string;
+
   /**
    * Enables native crashHandling. This only works if `enableNative` is `true`.
    * Defaults to `true`.

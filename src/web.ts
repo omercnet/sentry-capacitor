@@ -29,6 +29,8 @@ export class SentryCapacitorWeb
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   captureEnvelope(payload: { envelope: string }): Promise<Response> {
+    /* eslint-disable-next-line no-console */
+    console.log(payload);
     // TODO integrate web
 
     return Promise.resolve({
@@ -73,6 +75,8 @@ export class SentryCapacitorWeb
   getStringBytesLength(payload: {
     string: string;
   }): Promise<{ value: number }> {
+    /* eslint-disable-next-line no-console */
+    console.log(payload);
     // TODO integrate web
     return Promise.resolve({ value: 12 });
   }
@@ -82,6 +86,8 @@ export class SentryCapacitorWeb
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async startWithOptions(options: CapacitorOptions): Promise<boolean> {
+    /* eslint-disable-next-line no-console */
+    console.log(options);
     // TODO integrate web
     return true;
   }

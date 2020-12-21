@@ -5,7 +5,7 @@ import { RewriteFrames } from '@sentry/integrations';
 import { StackFrame } from '@sentry/types';
 
 import { CapacitorClient } from './client';
-import { Release } from './integrations';
+import { CapacitorAngularErrorHandler, Release } from './integrations';
 import { CapacitorOptions } from './options';
 import { CapacitorScope } from './scope';
 
@@ -31,6 +31,11 @@ export function init(
     ...DEFAULT_OPTIONS,
     ...passedOptions,
   };
+
+  if (options.framework) {
+    console.log('FRAMEWORK WAS THERE: ', options.framework);
+    createErrorHandler(options.framework);
+  }
 
   if (options.defaultIntegrations === undefined) {
     options.defaultIntegrations = [new Release(), ...defaultIntegrations];
@@ -66,6 +71,16 @@ export function init(
 
   // set the event.origin tag.
   getCurrentHub().setTag('event.origin', 'javascript');
+}
+
+/**
+ * TESTING cortney
+ */
+function createErrorHandler(framework: string): unknown {
+  console.log('passed framework string cortney: ', framework);
+  console.log('cortney TESTING ADDING IN AN ANGULAR ERROR HANDLER OVERRIDE');
+
+  return new CapacitorAngularErrorHandler();
 }
 
 /**

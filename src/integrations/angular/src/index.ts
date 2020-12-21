@@ -1,0 +1,1 @@
+export { CapacitorAngularErrorHandler } from './errorhandler';
