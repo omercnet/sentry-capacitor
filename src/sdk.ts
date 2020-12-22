@@ -2,7 +2,7 @@ import { defaultIntegrations } from '@sentry/browser';
 import { initAndBind } from '@sentry/core';
 import { getCurrentHub, Hub, makeMain } from '@sentry/hub';
 import { RewriteFrames } from '@sentry/integrations';
-import { StackFrame } from '@sentry/types';
+import { Integration, StackFrame } from '@sentry/types';
 
 import { CapacitorClient } from './client';
 import { CapacitorAngularErrorHandler, Release } from './integrations';
@@ -33,8 +33,7 @@ export function init(
   };
 
   if (options.framework) {
-    console.log('FRAMEWORK WAS THERE: ', options.framework);
-    createErrorHandler(options.framework);
+    setupErrorHandler(options.framework);
   }
 
   if (options.defaultIntegrations === undefined) {
@@ -74,13 +73,14 @@ export function init(
 }
 
 /**
- * TESTING cortney
+ * Loads the proper global error handler based on the framework passed from the user
  */
-function createErrorHandler(framework: string): unknown {
-  console.log('passed framework string cortney: ', framework);
-  console.log('cortney TESTING ADDING IN AN ANGULAR ERROR HANDLER OVERRIDE');
-
-  return new CapacitorAngularErrorHandler();
+function setupErrorHandler(framework: string): unknown {
+  if (framework == 'angular') {
+    return new CapacitorAngularErrorHandler();
+  } else {
+    return null;
+  }
 }
 
 /**
